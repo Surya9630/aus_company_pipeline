@@ -201,6 +201,9 @@ Output JSON: {matched_abn, confidence, reasoning}
 - Batch processing with rate limiting
 - Cache results in `stg_matched_companies`
 
+**📘 For complete example with prompts, API interaction, and outputs, see:**  
+[`docs/llm_usage_example.md`](docs/llm_usage_example.md)
+
 See [`docs/entity_matching_strategy.md`](docs/entity_matching_strategy.md) for detailed methodology.
 
 ---
