@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_companies
+    description: Final unified company dimension combining ABR and Common Crawl data
+    columns:
+      - name: company_id
+        description: Unique identifier for each company
+        tests:
+          - unique
+          - not_null
+      - name: abn
+        description: Australian Business Number (may be null for CC-only records)
+      - name: company_name
+        description: Company name (from matched data, ABR, or CC)
+        tests:
+          - not_null
+      - name: website_url
+        description: Company website URL (from Common Crawl)
+      - name: data_source
+        description: Source of company data (ABR, CC, or BOTH)
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['ABR', 'CC', 'BOTH']
+      - name: entity_status
+        description: Entity status from ABR (for ABR and matched records)
+      - name: match_confidence
+        description: Matching confidence score (for BOTH records only)

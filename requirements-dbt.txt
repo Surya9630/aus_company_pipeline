@@ -1,0 +1,3 @@
+# ---- Transformation (dbt) ----
+dbt-core
+dbt-postgres

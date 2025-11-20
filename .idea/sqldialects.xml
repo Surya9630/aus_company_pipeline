@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/dbt_venv/lib/python3.11/site-packages/dbt/include/global_project" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/sql/schema.sql" dialect="PostgreSQL" />
+    <file url="PROJECT" dialect="PostgreSQL" />
+  </component>
+</project>

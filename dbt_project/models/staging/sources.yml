@@ -1,0 +1,74 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw staging tables loaded from ABR and Common Crawl
+    database: "{{ env_var('DB_NAME') }}"
+    schema: public
+    tables:
+      - name: stg_abr
+        description: Raw ABR (Australian Business Register) data
+        columns:
+          - name: abn
+            description: Australian Business Number (primary key)
+            tests:
+              - unique
+              - not_null
+          - name: entity_name
+            description: Legal entity name
+          - name: entity_status
+            description: Status of the entity (Active, Cancelled, etc.)
+          - name: state
+            description: Australian state/territory
+          - name: full_address
+            description: Complete address string
+      
+      - name: stg_common_crawl
+        description: Raw Common Crawl website data
+        columns:
+          - name: id
+            description: Unique identifier for CC record
+            tests:
+              - unique
+              - not_null
+          - name: website_url
+            description: URL of the company website
+            tests:
+              - unique
+              - not_null
+          - name: scraped_company_name
+            description: Company name extracted from website
+          - name: scraped_abn
+            description: ABN found on the website (if any)
+      
+      - name: stg_matched_companies
+        description: Entity matching results
+        columns:
+          - name: match_id
+            description: Unique match identifier
+            tests:
+              - unique
+              - not_null
+          - name: cc_id
+            description: Reference to Common Crawl record
+            tests:
+              - not_null
+              - relationships:
+                  to: source('raw', 'stg_common_crawl')
+                  field: id
+          - name: abn
+            description: Reference to ABR record
+            tests:
+              - not_null
+              - relationships:
+                  to: source('raw', 'stg_abr')
+                  field: abn
+          - name: match_method
+            description: Matching strategy used
+            tests:
+              - accepted_values:
+                  values: ['direct_abn', 'fuzzy_name', 'llm', 'manual']
+          - name: match_confidence
+            description: Confidence score (0.00 to 1.00)
+            tests:
+              - not_null

@@ -202,6 +202,32 @@ cython_debug/
 .cursorindexingignore
 
 # Marimo
-marimo/_static/
-marimo/_lsp/
 __marimo__/
+abr_data/
+
+# ===== Project-Specific Ignores =====
+
+# Common Crawl data (large files - don't commit to git)
+cc_data/
+*.warc.gz
+*.warc.wet.gz
+
+# ABR XML files (large - don't commit)
+abr_data/*.xml
+!abr_data/sample_abr.xml
+
+# Output files
+outputs/*.jsonl
+outputs/*.csv
+test_*.jsonl
+
+# dbt artifacts
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+
+# Test database
+aus_companies_test
+
+# macOS
+.DS_Store

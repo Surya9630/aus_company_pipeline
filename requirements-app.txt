@@ -1,0 +1,20 @@
+# ---- Data Extraction ----
+warcio
+requests
+beautifulsoup4
+lxml
+tqdm
+
+# ---- Data Processing & Database ----
+pandas
+sqlalchemy
+psycopg2-binary
+
+# ---- Entity Matching (LLM) ----
+anthropic
+openai
+google-generativeai
+
+# ---- Utilities ----
+pyyaml
+python-dotenv
