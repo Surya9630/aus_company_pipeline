@@ -29,7 +29,7 @@ A production-ready ETL pipeline that extracts, transforms, and integrates Austra
 ### ERD Diagram
 
 ```mermaid
-erdiagram
+erDiagram
     STG_ABR ||--o{ STG_MATCHED_COMPANIES : "abn"
     STG_COMMON_CRAWL ||--o{ STG_MATCHED_COMPANIES : "cc_id"
     STG_MATCHED_COMPANIES }o--|| DIM_COMPANIES : "contributes to"
