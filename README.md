@@ -223,19 +223,20 @@ cd aus_company_pipeline
 
 ### 2. Install Dependencies
 
+**We use separate requirement files** - see [REQUIREMENTS.md](REQUIREMENTS.md) for details.
+
 ```bash
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Main pipeline dependencies
+pip install -r requirements-app.txt
 
-# Install Python packages
-pip install -r requirements.txt
-
-# Install dbt packages
-cd dbt_project
-dbt deps
-cd ..
+# dbt (install in separate virtual environment - recommended)
+python -m venv dbt_venv
+source dbt_venv/bin/activate  # On Windows: dbt_venv\Scripts\activate
+pip install -r requirements-dbt.txt
+deactivate
 ```
+
+**Why two files?** dbt has version conflicts with the main app dependencies. Separating them prevents issues.
 
 ### 3. Configure Environment
 
